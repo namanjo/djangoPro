@@ -8,12 +8,54 @@
     <link rel="stylesheet" href="{% static "css/style.css" %}">
   </head>
   <body>
-    <div class="container">
+    <div class="container clearfix">
       <div class="jumbotron">
-        <h2>New York City Fellas.</h2>
+        <h2>Data From Database.</h2>
       </div>
 
+      {% if webpage_list %}
+        <table>
+          <thead>
+            <th>Site Name.</th>
+            <th>Date Accessed</th>
+          </thead>
+
+          {% for acc in webpage_list %}
+            <tr>
+              <td>{{ acc.name }}</td>
+              <td>{{ acc.date }}</td>
+            </tr>
+          {% endfor %}
+        </table>
+      {% endif %}
+
     <img src="{% static "img/nyc.jpg" %}" alt="nyc image">
+  </div>
+
+  <div class="container">
+
+    <div class="jumbotron">
+      <h2>Users in Database.</h2>
+    </div>
+
+    <table>
+      <thead>
+        <th>FirstName</th>
+        <th>LastName</th>
+        <th>Email</th>
+      </thead>
+
+      {% for people in user_list %}
+        <tr>
+          <td>{{ people.first_name }}</td>
+          <td>{{ people.last_name }}</td>
+          <td>{{ people.email }}</td>
+        </tr>
+      {% endfor %}
+    </table>
+
+
+  </div>
 
   </body>
 </html>
