@@ -21,3 +21,11 @@ td, th{
   float: right;
   margin-top: 20px;
 }
+
+.panel{
+  width: 70%;
+  margin-left: 15%;
+  background-color: #f8f8f8;
+  padding: 40px;
+  border-top: 15px solid #555; 
+}

@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from app_one.models import Topic, Webpage, AccessRecord, UserInfo
-from app_one.forms import FormName
+from app_one.forms import FormName, SignupForm
 
 
 def index(request):
@@ -23,3 +23,16 @@ def simple_form_view(request):
             print('Message: ' + form.cleaned_data['text'])
 
     return render(request, 'app_one/form_page.html', {'form':form})
+
+def sign_up(request):
+    signup = SignupForm()
+
+    if request.method == 'POST':
+        signup = SignupForm(request.POST)
+
+        if signup.is_valid():
+            signup.save()
+            return index(request)
+        else:
+            print('\nInvalid Input\n')
+    return render(request, 'app_one/sign_up.html', {'form_signup': signup})
