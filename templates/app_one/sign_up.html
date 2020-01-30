@@ -1,27 +1,15 @@
-<!DOCTYPE html>
-{% load staticfiles %}
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title>SignUp</title>
-    <link rel="stylesheet" href="{% static "css/bootstrap.min.css" %}">
-    <link rel="stylesheet" href="{% static "css/style.css" %}">
-  </head>
+{% extends 'app_one/base.html' %}
 
-  <body>
-    <div class="container">
-      <div class="jumbotron">
-        <h2>SignUp For database.</h2>
-      </div>
+{% block body_block %}
+<div class="jumbotron">
+  <h2>SignUp For database.</h2>
+</div>
 
-      <div class="panel">
-        <form method="POST">
-          {{ form_signup.as_p }}
-          {% csrf_token %}
-          <input type="submit" class="btn btn-primary" value="Submit">
-        </form>
-      </div>
-
-    </div>
-  </body>
-</html>
+<div class="panel">
+  <form method="POST">
+    {{ form_signup.as_p }}
+    {% csrf_token %}
+    <input type="submit" class="btn btn-primary" value="Submit">
+  </form>
+</div>
+{% endblock %}

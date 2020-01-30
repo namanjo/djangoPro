@@ -1,25 +1,14 @@
-<!DOCTYPE html>
-{% load staticfiles %}
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title>Form</title>
-    <link rel="stylesheet" href="{% static "css/bootstrap.min.css" %}">
-    <link rel="stylesheet" href="{% static "css/style.css" %}">
-  </head>
-  <body>
+{% extends 'app_one/base.html' %}
 
-    <div class="container">
-      <div class="jumbotron">
-        <h3>Simple Form.</h3>
-        <p>Just For displaying data in console.</p>
-      </div>
-      <form method="POST">
-        {{ form.as_p }}
-        {% csrf_token %}
-        <input type="submit" class="btn btn-primary" value="Submit">
-      </form>
-    </div>
+{% block body_block %}
+<div class="jumbotron">
+  <h3>Simple Form.</h3>
+  <p>Just For displaying data in console.</p>
+</div>
 
-  </body>
-</html>
+<form method="POST">
+  {{ form.as_p }}
+  {% csrf_token %}
+  <input type="submit" class="btn btn-primary" value="Submit">
+</form>
+{% endblock %}

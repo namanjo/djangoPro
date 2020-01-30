@@ -1,6 +1,7 @@
 *{
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 
 table{
@@ -27,5 +28,33 @@ td, th{
   margin-left: 15%;
   background-color: #f8f8f8;
   padding: 40px;
-  border-top: 15px solid #555; 
+  border-top: 15px solid #555;
+}
+
+nav{
+  background-color: #555;
+}
+
+ul{
+  list-style: none;
+  text-align: left;
+}
+
+li{
+  display: inline-block;
+  padding: 15px;
+  transition: background-color 0.3s;
+}
+
+ li a:link,
+ li a:visited{
+  color: #fff;
+  text-decoration: none;
+  font-size: 20px;
+  font-weight: 400;
+}
+
+li:hover,
+li:active{
+  background-color: #464848;
 }

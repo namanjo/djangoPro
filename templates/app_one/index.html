@@ -1,13 +1,9 @@
-<!DOCTYPE html>
+{% extends 'app_one/base.html' %}
 {% load staticfiles %}
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title>Home</title>
-    <link rel="stylesheet" href="{% static "css/bootstrap.min.css" %}">
-    <link rel="stylesheet" href="{% static "css/style.css" %}">
-  </head>
-  <body>
+
+
+{% block body_block %}
+
     <div class="container clearfix">
       <div class="jumbotron">
         <h2>Data From Database.</h2>
@@ -55,7 +51,4 @@
     </table>
   </div>
 
-  <h3>Go to app_one/signup for signing up for database</h3>
-
-  </body>
-</html>
+{% endblock %}
