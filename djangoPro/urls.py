@@ -24,6 +24,8 @@ urlpatterns = [
     path('', views.index, name = 'index'),
     path('app_one/', include('app_one.urls')),
     path('simple_form/', views.simple_form_view, name='simple_form'),
+    path('simple_form/users', views.simple_form_users, name='simple_form_users'),
+    path('logout/', views.user_logout, name='logout'),
     path('admin/', admin.site.urls),
 ]
 

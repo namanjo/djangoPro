@@ -12,11 +12,19 @@
 
     <nav>
       <ul class="container">
-        <li><a href="{% url 'index' %}">Home</a></li>
-        <li><a href="{% url 'simple_form' %}">ConsoleDisplay</a></li>
-        <li><a href="{% url 'app_one:sign_up' %}">SignUp</a></li>
-        <li><a href="{% url 'app_one:register' %}">Register</a></li>
-        <li><a href="{% url 'admin:index' %}">Admin</a></li>
+          <li><a href="{% url 'index' %}">Home</a></li>
+          <li><a href="{% url 'simple_form' %}">ConsoleDisplay</a></li>
+          <li><a href="{% url 'simple_form_users' %}">FormUsers</a></li>
+          <li><a href="{% url 'app_one:sign_up' %}">SignUp</a></li>
+          <li class="mr-auto"><a href="{% url 'admin:index' %}">Admin</a></li>
+
+          {% if user.is_authenticated %}
+            <li><a href="{% url 'logout' %}">Logout</a></li>
+          {% else %}
+            <li><a href="{% url 'app_one:register' %}">Register</a></li>
+           <li><a href="{% url 'app_one:user_login' %}">Login</a></li>
+          {% endif %}
+
       </ul>
     </nav>
 

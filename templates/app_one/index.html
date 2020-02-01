@@ -27,28 +27,4 @@
 
     <img src="{% static "img/nyc.jpg" %}" alt="nyc image">
   </div>
-
-  <div class="container clearfix">
-
-    <div class="jumbotron">
-      <h2>Users in Database.</h2>
-    </div>
-
-    <table>
-      <thead>
-        <th>FirstName</th>
-        <th>LastName</th>
-        <th>Email</th>
-      </thead>
-
-      {% for people in user_list %}
-        <tr>
-          <td>{{ people.first_name }}</td>
-          <td>{{ people.last_name }}</td>
-          <td>{{ people.email }}</td>
-        </tr>
-      {% endfor %}
-    </table>
-  </div>
-
 {% endblock %}

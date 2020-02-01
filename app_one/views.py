@@ -3,12 +3,23 @@ from django.http import HttpResponse
 from app_one.models import Topic, Webpage, AccessRecord, UserInfo
 from app_one.forms import FormName, SignupForm,UserForm, UserProfileRegisterForm
 
+#Login stuff
+from django.http import HttpResponse, HttpResponseRedirect
+from django.urls import reverse
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth import authenticate, login, logout
+
 
 def index(request):
     webpages_list = AccessRecord.objects.order_by('date')
-    user_list = UserInfo.objects.order_by('first_name')
-    data_dict = {'webpage_list':webpages_list, 'user_list': user_list}
+    data_dict = {'webpage_list':webpages_list}
     return render(request, 'app_one/index.html', context=data_dict)
+
+@login_required
+def simple_form_users(request):
+    user_list = UserInfo.objects.order_by('first_name')
+    form_users_list = {'user_list': user_list}
+    return render(request, 'app_one/simple_form_users.html', context=form_users_list )
 
 def simple_form_view(request):
     form = FormName()
@@ -67,3 +78,30 @@ def register(request):
     return render(request, 'app_one/registration.html', {'user_form': user_form,
                                                         'profile_form': profile_form,
                                                         'registered':registered})
+
+#For Login
+def user_login(request):
+
+    if request.method == "POST":
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+
+        user = authenticate(username=username, password=password)
+
+        if user:
+            if user.is_active:
+                login(request, user)
+                return HttpResponseRedirect(reverse('index'))
+            else:
+                return HttpResponse('Account not active.')
+        else:
+            print('\nSomeone tried to login and failed.\n')
+            return HttpResponse('Invalid Login details supplied.')
+    else:
+        return render(request, 'app_one/login.html')
+
+#For logout
+@login_required
+def user_logout(request):
+    logout(request)
+    return HttpResponseRedirect(reverse('index'))
