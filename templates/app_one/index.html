@@ -27,4 +27,30 @@
 
     <img src="{% static "img/nyc.jpg" %}" alt="nyc image">
   </div>
+
+  <div class="container">
+    <div class="jumbotron">
+      <h2>Registered users</h2>
+    </div>
+
+    {% for people in people_list %}
+
+
+      <div class="card" style="width: 18rem;">
+        <img class="card-img-top" src="{{ people.profile_picture.url }}" alt="Card image cap">
+
+        <div class="card-body">
+          <h5 class="card-title">{{ people.user.username }}</h5>
+        </div>
+
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">{{ people.user.email }}</li>
+          <li class="list-group-item">{{ people.portfolio_site }}</li>
+        </ul>
+      </div>
+
+
+    {% endfor %}
+
+  </div>
 {% endblock %}

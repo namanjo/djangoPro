@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from app_one.models import Topic, Webpage, AccessRecord, UserInfo
+from app_one.models import Topic, Webpage, AccessRecord, UserInfo, UserProfileRegister
 from app_one.forms import FormName, SignupForm,UserForm, UserProfileRegisterForm
 
 #Login stuff
@@ -12,7 +12,8 @@ from django.contrib.auth import authenticate, login, logout
 
 def index(request):
     webpages_list = AccessRecord.objects.order_by('date')
-    data_dict = {'webpage_list':webpages_list}
+    people_list = UserProfileRegister.objects.all()
+    data_dict = {'webpage_list':webpages_list, 'people_list':people_list}
     return render(request, 'app_one/index.html', context=data_dict)
 
 @login_required
