@@ -36,6 +36,7 @@ def simple_form_view(request):
 
     return render(request, 'app_one/form_page.html', {'form':form})
 
+@login_required
 def sign_up(request):
     signup = SignupForm()
 
@@ -92,7 +93,10 @@ def user_login(request):
         if user:
             if user.is_active:
                 login(request, user)
-                return HttpResponseRedirect(reverse('index'))
+                if 'next' in request.POST:
+                    return HttpResponseRedirect(request.POST.get('next'))
+                else:
+                    return HttpResponseRedirect(reverse('index'))
             else:
                 return HttpResponse('Account not active.')
         else:
