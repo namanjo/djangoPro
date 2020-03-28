@@ -35,9 +35,11 @@
 
     {% for people in people_list %}
 
-
       <div class="card" style="width: 18rem;">
-        <img class="card-img-top" src="{{ people.profile_picture.url }}" alt="Card image cap">
+        
+        {% if people.profile_picture %}
+          <img class="card-img-top" src="{{ people.profile_picture.url }}" alt="Card image cap">
+        {% endif %}
 
         <div class="card-body">
           <h5 class="card-title">{{ people.user.username }}</h5>
